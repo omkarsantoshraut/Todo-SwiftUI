@@ -1,16 +1,33 @@
 import SwiftUI
 
+enum OnboardingScreenTypes {
+    case first
+    case second
+    case third
+}
+
+/**
+ The app launcher view.
+ */
 struct AppLauncherView: View {
+
+    @State private var onboardingScreenType: OnboardingScreenTypes = .first
+
+    // MARK: - Body
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        switch onboardingScreenType {
+        case .first:
+            OnboardingFirstScreenView(onboardingScreenType: $onboardingScreenType)
+        case .second:
+            OnboardingSecondScreenView(onboardingScreenType: $onboardingScreenType)
+        case .third:
+            OnboardingThirdScreenView(onboardingScreenType: $onboardingScreenType)
         }
-        .padding()
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     AppLauncherView()
